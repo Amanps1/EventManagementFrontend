@@ -14,6 +14,8 @@ import UserDetailPage from "../pages/users/UserDetailPage";
 import UsersPage from "../pages/users/UsersPage";
 import AnalyticsPage from "../pages/analytics/AnalyticsPage";
 import SettingsPage from "../pages/settings/SettingsPage";
+import VenueManagementPage from "../pages/venues/VenueManagementPage";
+import AddZonePage from "../pages/zones/AddZonePage";
 import { useAuth } from "../context/AuthContext";
 
 export default function AppRoutes() {
@@ -77,6 +79,14 @@ export default function AppRoutes() {
       <Route
         path="/settings"
         element={user ? <SettingsPage /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/venues/add"
+        element={user ? <VenueManagementPage /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/zones/add"
+        element={user ? <AddZonePage /> : <Navigate to="/login" />}
       />
       <Route
         path="*"

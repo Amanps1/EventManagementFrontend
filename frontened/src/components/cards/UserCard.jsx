@@ -7,10 +7,10 @@ const UserCard = ({ user }) => {
       <p className="text-sm text-gray-600">{user.email}</p>
       <div className="mt-3 text-sm text-gray-500">
         <p>
-          👤 {user.firstName} {user.lastName}
+           {user.firstName} {user.lastName}
         </p>
-        <p>📞 {user.phoneNumber}</p>
-        <p>📍 {user.address}</p>
+        <p> {user.phoneNumber}</p>
+        <p> {user.address}</p>
         <p>🛡 Role: {user.role}</p>
       </div>
       <div className="mt-4">

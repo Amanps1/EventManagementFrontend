@@ -8,6 +8,8 @@ import {
   UsersIcon,
   CogIcon,
   LogoutIcon,
+  LocationMarkerIcon,
+  MapIcon,
 } from "@heroicons/react/outline";
 import { useAuth } from "../../context/AuthContext";
 
@@ -26,6 +28,16 @@ const menuItems = [
     name: "Users",
     path: "/users",
     icon: <UsersIcon className="h-6 w-6" />,
+  },
+  {
+    name: "Add Venue",
+    path: "/venues/add",
+    icon: <LocationMarkerIcon className="h-6 w-6" />,
+  },
+  {
+    name: "Add Zone",
+    path: "/zones/add",
+    icon: <MapIcon className="h-6 w-6" />,
   },
   {
     name: "Settings",
@@ -60,19 +72,14 @@ export default function Sidebar() {
       </div>
       <nav className="flex-1 space-y-2">
         {menuItems.map((item) => (
-          <NavLink
+          <button
             key={item.name}
-            to={item.path}
-            end
-            className={({ isActive }) =>
-              `flex items-center gap-4 p-3 rounded transition-colors ${
-                isActive ? "bg-gray-700" : "hover:bg-gray-700"
-              }`
-            }
+            onClick={() => navigate(item.path)}
+            className="flex items-center gap-4 p-3 rounded transition-colors hover:bg-gray-700 w-full text-left"
           >
             {item.icon}
             {isOpen && <span className="text-md font-medium">{item.name}</span>}
-          </NavLink>
+          </button>
         ))}
       </nav>
       {user && (

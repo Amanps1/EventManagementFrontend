@@ -160,7 +160,7 @@ const DashboardPage = () => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`p-3 rounded-xl ${stat.bgColor}`}>
-                  <Icon className={`w-6 h-6 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
+                  <Icon className="w-6 h-6 text-indigo-600" />
                 </div>
                 <div className={`flex items-center space-x-1 text-sm ${
                   stat.changeType === 'increase' ? 'text-green-600' : 'text-red-600'

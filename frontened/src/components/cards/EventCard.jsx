@@ -7,7 +7,7 @@ const EventCard = ({ event }) => {
       <p className="text-sm text-gray-600 mt-1">{event.description}</p>
       <div className="mt-3 text-sm text-gray-500">
         <p>
-          📍 {event.location} | {event.venueName}
+           {event.location} | {event.venueName}
         </p>
         <p>
           🗓 {new Date(event.startDatetime).toLocaleString()} -{" "}

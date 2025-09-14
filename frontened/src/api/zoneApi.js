@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/api/zones";
+const BASE_URL = "http://localhost:8080/api/zones";
 
 export const getZones = () => axios.get(BASE_URL);
 export const getZoneById = (id) => axios.get(`${BASE_URL}/${id}`);

@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

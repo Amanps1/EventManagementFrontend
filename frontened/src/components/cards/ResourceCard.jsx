@@ -9,8 +9,8 @@ const ResourceCard = ({ resource }) => {
       <p className="text-sm text-gray-600 mt-1">{resource.description}</p>
       <div className="mt-3 text-sm text-gray-500">
         <p>🏷 Type: {resource.resourceType}</p>
-        <p>📦 Available: {resource.quantityAvailable}</p>
-        <p>💲 Rate: {resource.hourlyRate} / hour</p>
+        <p> Available: {resource.quantityAvailable}</p>
+        <p> Rate: {resource.hourlyRate} / hour</p>
       </div>
       <div className="mt-4">
         <span
