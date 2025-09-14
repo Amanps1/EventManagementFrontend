@@ -28,7 +28,6 @@ export default function Navbar() {
   return (
     <>
       <div className="flex justify-between items-center bg-white/80 backdrop-blur-md shadow-lg px-6 py-4 border-b border-white/20 sticky top-0 z-30">
-        {/* Left: Greeting & Search */}
         <div className="flex items-center space-x-6">
           <div>
             {user ? (
@@ -49,8 +48,6 @@ export default function Navbar() {
               </h2>
             )}
           </div>
-
-          {/* Global Search */}
           <div className="hidden md:block relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -62,10 +59,7 @@ export default function Navbar() {
             />
           </div>
         </div>
-
-        {/* Right: Actions & Profile */}
         <div className="flex items-center space-x-4">
-          {/* Settings */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -73,8 +67,6 @@ export default function Navbar() {
           >
             <Settings className="w-5 h-5" />
           </motion.button>
-
-          {/* Notifications */}
           <div className="relative">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -88,8 +80,6 @@ export default function Navbar() {
               </span>
             </motion.button>
           </div>
-
-          {/* Profile Dropdown */}
           <div className="relative">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -157,8 +147,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Notification Center */}
       <NotificationCenter 
         isOpen={isNotifOpen} 
         onClose={() => setIsNotifOpen(false)} 

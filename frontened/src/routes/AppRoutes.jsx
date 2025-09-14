@@ -12,6 +12,8 @@ import PostEventPage from "../pages/events/PostEventPage";
 import ProfilePage from "../pages/users/ProfilePage";
 import UserDetailPage from "../pages/users/UserDetailPage";
 import UsersPage from "../pages/users/UsersPage";
+import AnalyticsPage from "../pages/analytics/AnalyticsPage";
+import SettingsPage from "../pages/settings/SettingsPage";
 import { useAuth } from "../context/AuthContext";
 
 export default function AppRoutes() {
@@ -67,6 +69,14 @@ export default function AppRoutes() {
       <Route
         path="/users/:id"
         element={user ? <UserDetailPage /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/analytics"
+        element={user ? <AnalyticsPage /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/settings"
+        element={user ? <SettingsPage /> : <Navigate to="/login" />}
       />
       <Route
         path="*"

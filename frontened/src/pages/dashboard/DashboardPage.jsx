@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { 
   Users, 
   Calendar, 
@@ -9,13 +10,15 @@ import {
   Clock,
   Star,
   ArrowUpRight,
-  BarChart3
+  BarChart3,
+  Settings
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
 const DashboardPage = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     totalUsers: 0,
     eventsHosted: 0,
@@ -191,7 +194,10 @@ const DashboardPage = () => {
               <Activity className="w-5 h-5 mr-2 text-indigo-600" />
               Recent Events
             </h2>
-            <button className="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+            <button 
+              onClick={() => navigate("/events")}
+              className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
+            >
               View All
             </button>
           </div>
@@ -240,10 +246,10 @@ const DashboardPage = () => {
           </h2>
           <div className="space-y-3">
             {[
-              { title: "Create Event", icon: Calendar, color: "from-blue-500 to-blue-600" },
-              { title: "Manage Users", icon: Users, color: "from-green-500 to-green-600" },
-              { title: "View Analytics", icon: BarChart3, color: "from-purple-500 to-purple-600" },
-              { title: "System Settings", icon: Activity, color: "from-orange-500 to-orange-600" }
+              { title: "Create Event", icon: Calendar, color: "from-blue-500 to-blue-600", route: "/events/create" },
+              { title: "Manage Users", icon: Users, color: "from-green-500 to-green-600", route: "/users" },
+              { title: "View Analytics", icon: BarChart3, color: "from-purple-500 to-purple-600", route: "/analytics" },
+              { title: "System Settings", icon: Settings, color: "from-orange-500 to-orange-600", route: "/settings" }
             ].map((action, index) => {
               const Icon = action.icon;
               return (
@@ -251,11 +257,7 @@ const DashboardPage = () => {
                   key={action.title}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    if (action.title === "Create Event") {
-                      window.location.href = "/events/create";
-                    }
-                  }}
+                  onClick={() => navigate(action.route)}
                   className="w-full flex items-center space-x-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors text-left"
                 >
                   <div className={`p-2 rounded-lg bg-gradient-to-r ${action.color}`}>

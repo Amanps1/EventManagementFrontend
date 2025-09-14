@@ -165,7 +165,7 @@ const NotificationCenter = ({ isOpen, onClose }) => {
       action, 
       newStatus: action === 'approve' ? 'APPROVED' : 'CANCELLED' 
     };
-    console.log('Dispatching event with detail:', eventDetail);
+    console.log('📡 Dispatching eventStatusUpdated:', eventDetail);
     window.dispatchEvent(new CustomEvent('eventStatusUpdated', { detail: eventDetail }));
   };
 

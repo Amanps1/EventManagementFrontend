@@ -35,19 +35,20 @@ const EventsPage = () => {
     // Listen for event status updates from notifications
     const handleEventStatusUpdate = (event) => {
       const { eventId, newStatus } = event.detail;
-      console.log('Received event update:', { eventId, newStatus, type: typeof eventId });
+      console.log('🔄 Event status update received:', { eventId, newStatus });
       
-      // Update the local events state immediately
-      setEvents(prev => {
-        console.log('Current events:', prev.map(e => ({ id: e.id, status: e.status, idType: typeof e.id })));
-        const updated = prev.map(evt => {
-          // Convert both to numbers for comparison
-          const match = Number(evt.id) === Number(eventId);
-          console.log(`Comparing ${evt.id} (${typeof evt.id}) with ${eventId} (${typeof eventId}): ${match}`);
-          return match ? { ...evt, status: newStatus } : evt;
+      // Force immediate state update
+      setEvents(prevEvents => {
+        const updatedEvents = prevEvents.map(evt => {
+          if (evt.id == eventId) { // Use loose equality to handle string/number mismatch
+            console.log('✅ Updating event:', evt.id, 'from', evt.status, 'to', newStatus);
+            return { ...evt, status: newStatus };
+          }
+          return evt;
         });
-        console.log('Updated events:', updated.map(e => ({ id: e.id, status: e.status })));
-        return updated;
+        
+        // Force component re-render by creating new array
+        return [...updatedEvents];
       });
     };
     
