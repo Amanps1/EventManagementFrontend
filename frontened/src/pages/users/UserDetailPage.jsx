@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getUserById } from "../../api/userApi";
 
 const UserDetailPage = () => {
-  const { id } = useParams(); // read userId from route (/users/:id)
+  const { id } = useParams(); 
   const [user, setUser] = useState(null);
 
   const fetchUser = async () => {

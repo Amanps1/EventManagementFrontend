@@ -47,7 +47,7 @@ const UsersPage = () => {
     fetchUsers();
   }, []);
 
-  // Close dropdown when clicking outside
+  
   useEffect(() => {
     const handleClickOutside = () => setActiveDropdown(null);
     if (activeDropdown) {

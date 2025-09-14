@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEvent } from "../../context/EventContext";
 
 const PostEventPage = () => {
-  const { eventId } = useParams(); // ✅ fetch id from URL
+  const { eventId } = useParams(); 
   const { submitFeedback } = useEvent();
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0);

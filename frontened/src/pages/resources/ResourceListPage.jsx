@@ -134,7 +134,6 @@ const ResourceListPage = () => {
       animate={{ opacity: 1 }}
       className="p-6 space-y-6"
     >
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -153,7 +152,6 @@ const ResourceListPage = () => {
         </motion.button>
       </div>
 
-      {/* Search and Filters */}
       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1 relative">
@@ -180,7 +178,6 @@ const ResourceListPage = () => {
         </div>
       </div>
 
-      {/* Resources Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence>
           {filteredResources.map((resource, index) => {
@@ -195,7 +192,6 @@ const ResourceListPage = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300"
               >
-                {/* Card Header */}
                 <div className="p-6 pb-4">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
@@ -267,7 +263,6 @@ const ResourceListPage = () => {
                   </div>
                 </div>
 
-                {/* Card Body */}
                 <div className="px-6 pb-4">
                   <p className="text-sm text-gray-600 mb-3">{resource.description}</p>
                   
@@ -285,7 +280,6 @@ const ResourceListPage = () => {
                   )}
                 </div>
 
-                {/* Card Footer */}
                 <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
                   <div className="flex items-center justify-between">
                     <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-full text-sm ${
@@ -306,7 +300,6 @@ const ResourceListPage = () => {
         </AnimatePresence>
       </div>
 
-      {/* Add Resource Modal */}
       <AnimatePresence>
         {showAddModal && (
           <motion.div

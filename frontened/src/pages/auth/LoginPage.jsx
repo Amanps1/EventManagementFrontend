@@ -32,7 +32,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-4">
-      {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -inset-10 opacity-50">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -47,9 +46,7 @@ export default function LoginPage() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 w-full max-w-md"
       >
-        {/* Glass Card */}
         <div className="glass rounded-3xl p-8 shadow-2xl border border-white/20">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,8 +61,6 @@ export default function LoginPage() {
             <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
             <p className="text-white/70">Sign in to your account</p>
           </motion.div>
-
-          {/* Error Message */}
           {error && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -75,10 +70,7 @@ export default function LoginPage() {
               {error}
             </motion.div>
           )}
-
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email/Username Input */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -96,8 +88,6 @@ export default function LoginPage() {
                 />
               </div>
             </motion.div>
-
-            {/* Password Input */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -118,12 +108,14 @@ export default function LoginPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
             </motion.div>
-
-            {/* Submit Button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -141,8 +133,6 @@ export default function LoginPage() {
               )}
             </motion.button>
           </form>
-
-          {/* Footer Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

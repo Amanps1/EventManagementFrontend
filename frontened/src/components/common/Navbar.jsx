@@ -1,4 +1,3 @@
-// src/components/common/Navbar.jsx
 import { useState } from "react";
 import { Bell, User, Search, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -147,9 +146,9 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <NotificationCenter 
-        isOpen={isNotifOpen} 
-        onClose={() => setIsNotifOpen(false)} 
+      <NotificationCenter
+        isOpen={isNotifOpen}
+        onClose={() => setIsNotifOpen(false)}
       />
     </>
   );

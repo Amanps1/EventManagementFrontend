@@ -29,7 +29,7 @@ const menuItems = [
   },
   {
     name: "Settings",
-    path: "/settings", 
+    path: "/settings",
     icon: <CogIcon className="h-6 w-6" />,
   },
 ];
@@ -49,7 +49,6 @@ export default function Sidebar() {
       animate={{ width: isOpen ? 220 : 70 }}
       className="bg-gray-800 text-white h-screen p-4 flex flex-col shadow-lg z-50"
     >
-      {/* Header */}
       <div className="flex items-center justify-between mb-8">
         {isOpen && <h1 className="text-xl font-bold">EventManager</h1>}
         <button
@@ -59,8 +58,6 @@ export default function Sidebar() {
           {isOpen ? "<" : ">"}
         </button>
       </div>
-
-      {/* Menu */}
       <nav className="flex-1 space-y-2">
         {menuItems.map((item) => (
           <NavLink
@@ -78,8 +75,6 @@ export default function Sidebar() {
           </NavLink>
         ))}
       </nav>
-
-      {/* Logout */}
       {user && (
         <button
           onClick={handleLogout}

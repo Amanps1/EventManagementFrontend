@@ -32,22 +32,19 @@ const EventsPage = () => {
   useEffect(() => {
     fetchEvents();
     
-    // Listen for event status updates from notifications
     const handleEventStatusUpdate = (event) => {
       const { eventId, newStatus } = event.detail;
       console.log('🔄 Event status update received:', { eventId, newStatus });
       
-      // Force immediate state update
       setEvents(prevEvents => {
         const updatedEvents = prevEvents.map(evt => {
-          if (evt.id == eventId) { // Use loose equality to handle string/number mismatch
+          if (evt.id == eventId) { 
             console.log('✅ Updating event:', evt.id, 'from', evt.status, 'to', newStatus);
             return { ...evt, status: newStatus };
           }
           return evt;
         });
         
-        // Force component re-render by creating new array
         return [...updatedEvents];
       });
     };
@@ -126,7 +123,6 @@ const EventsPage = () => {
       animate={{ opacity: 1 }}
       className="p-6 space-y-6"
     >
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -145,10 +141,8 @@ const EventsPage = () => {
         </motion.button>
       </div>
 
-      {/* Search and Filters */}
       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
         <div className="flex flex-col lg:flex-row gap-4">
-          {/* Search */}
           <div className="flex-1 relative">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -160,7 +154,6 @@ const EventsPage = () => {
             />
           </div>
 
-          {/* Filter Toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center space-x-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
@@ -171,7 +164,6 @@ const EventsPage = () => {
           </button>
         </div>
 
-        {/* Filters */}
         <AnimatePresence>
           {showFilters && (
             <motion.div
@@ -215,7 +207,6 @@ const EventsPage = () => {
         </AnimatePresence>
       </div>
 
-      {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence>
           {filteredEvents.map((event, index) => (
@@ -228,7 +219,6 @@ const EventsPage = () => {
               whileHover={{ y: -5 }}
               className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300"
             >
-              {/* Card Header */}
               <div className="p-6 pb-4">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-2">
@@ -275,7 +265,6 @@ const EventsPage = () => {
                 </p>
               </div>
 
-              {/* Card Body */}
               <div className="px-6 pb-6 space-y-3">
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Calendar className="w-4 h-4" />
@@ -295,7 +284,6 @@ const EventsPage = () => {
                 </div>
               </div>
 
-              {/* Progress Bar */}
               <div className="px-6 pb-6">
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
@@ -314,7 +302,6 @@ const EventsPage = () => {
         </AnimatePresence>
       </div>
 
-      {/* Empty State */}
       {filteredEvents.length === 0 && (
         <motion.div
           initial={{ opacity: 0 }}

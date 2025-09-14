@@ -84,7 +84,6 @@ const EventDetailPage = () => {
       animate={{ opacity: 1, y: 0 }}
       className="p-6 max-w-4xl mx-auto"
     >
-      {/* Header */}
       <div className="flex items-center space-x-4 mb-8">
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -102,9 +101,7 @@ const EventDetailPage = () => {
         </div>
       </div>
 
-      {/* Event Card */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-        {/* Event Header */}
         <div className="p-8 pb-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center space-x-3">
@@ -122,7 +119,6 @@ const EventDetailPage = () => {
           <p className="text-gray-700 text-lg leading-relaxed">{event.description}</p>
         </div>
 
-        {/* Event Details Grid */}
         <div className="px-8 pb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -182,7 +178,6 @@ const EventDetailPage = () => {
           </div>
         </div>
 
-        {/* Registration Progress */}
         <div className="px-8 pb-8">
           <div className="bg-gray-50 rounded-xl p-6">
             <div className="flex items-center justify-between mb-3">
@@ -202,7 +197,6 @@ const EventDetailPage = () => {
           </div>
         </div>
 
-        {/* Recurring Event Info */}
         {event.isRecurring && (
           <div className="px-8 pb-8">
             <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
@@ -217,7 +211,6 @@ const EventDetailPage = () => {
           </div>
         )}
 
-        {/* Action Buttons */}
         <div className="px-8 py-6 bg-gray-50 border-t border-gray-200">
           <div className="flex space-x-4">
             <motion.button

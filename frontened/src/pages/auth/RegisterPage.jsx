@@ -46,9 +46,7 @@ const RegisterPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
+        if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
   };
@@ -116,7 +114,6 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-4">
-      {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -inset-10 opacity-50">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -131,9 +128,7 @@ const RegisterPage = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 w-full max-w-2xl"
       >
-        {/* Glass Card */}
         <div className="glass rounded-3xl p-8 shadow-2xl border border-white/20">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -148,8 +143,6 @@ const RegisterPage = () => {
             <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
             <p className="text-white/70">Join our community today</p>
           </motion.div>
-
-          {/* Error Message */}
           {errors.submit && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -162,7 +155,6 @@ const RegisterPage = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Role Selection */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -195,8 +187,6 @@ const RegisterPage = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -250,8 +240,6 @@ const RegisterPage = () => {
                 )}
               </motion.div>
             </div>
-
-            {/* Account Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -305,8 +293,6 @@ const RegisterPage = () => {
                 )}
               </motion.div>
             </div>
-
-            {/* Password Fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -374,8 +360,6 @@ const RegisterPage = () => {
                 )}
               </motion.div>
             </div>
-
-            {/* Contact Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -421,8 +405,6 @@ const RegisterPage = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* Address */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -448,8 +430,6 @@ const RegisterPage = () => {
                 </p>
               )}
             </motion.div>
-
-            {/* Submit Button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -470,8 +450,6 @@ const RegisterPage = () => {
               )}
             </motion.button>
           </form>
-
-          {/* Footer */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

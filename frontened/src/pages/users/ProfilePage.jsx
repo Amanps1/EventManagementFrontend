@@ -44,7 +44,6 @@ const ProfilePage = () => {
       fetchProfile();
     } catch (err) {
       console.error("Error updating profile:", err);
-      // Just update local state if API fails
       setUser(formData);
       setEditMode(false);
     }
@@ -91,7 +90,6 @@ const ProfilePage = () => {
           </div>
         ))}
 
-        {/* Non-editable fields */}
         <div className="flex flex-col">
           <label className="font-medium">Username</label>
           <p className="p-2 bg-gray-100 rounded">{user.username}</p>

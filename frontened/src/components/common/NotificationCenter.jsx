@@ -27,8 +27,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
       const response = await getAllEvents(0, 10);
       const events = response.data.data || [];
       setRealEvents(events);
-      
-      // Create notifications for pending events
       const pendingEvents = events.filter(event => event.status === 'PENDING_APPROVAL');
       const eventNotifications = pendingEvents.map((event, index) => ({
         id: `event_${event.id}`,
@@ -41,8 +39,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
         eventId: event.id,
         requiresAction: true
       }));
-      
-      // Add some static notifications
       const staticNotifications = [
         {
           id: 'static_1',
@@ -67,7 +63,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
       setNotifications([...eventNotifications, ...staticNotifications]);
     } catch (error) {
       console.error('Error fetching events for notifications:', error);
-      // Fallback to static notifications
       setNotifications([
         {
           id: 'fallback_1',
@@ -142,11 +137,7 @@ const NotificationCenter = ({ isOpen, onClose }) => {
 
   const handleApproval = (notificationId, eventId, action) => {
     console.log(`${action}ing event with ID:`, eventId, 'type:', typeof eventId);
-    
-    // Remove the notification after action
     setNotifications(prev => prev.filter(notif => notif.id !== notificationId));
-    
-    // Add a new notification about the action taken
     const newNotification = {
       id: Date.now(),
       type: "EVENT_UPDATE",
@@ -158,8 +149,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
     };
     
     setNotifications(prev => [newNotification, ...prev]);
-    
-    // Dispatch custom event to refresh events list
     const eventDetail = { 
       eventId, 
       action, 
@@ -175,7 +164,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -183,8 +171,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
             className="fixed inset-0 bg-black bg-opacity-25 z-40"
             onClick={onClose}
           />
-
-          {/* Notification Panel */}
           <motion.div
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0 }}
@@ -192,7 +178,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 flex flex-col"
           >
-            {/* Header */}
             <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-indigo-600 to-purple-600">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -213,8 +198,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-
-              {/* Actions */}
               {unreadCount > 0 && (
                 <motion.button
                   initial={{ opacity: 0, y: 10 }}
@@ -226,8 +209,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                 </motion.button>
               )}
             </div>
-
-            {/* Notifications List */}
             <div className="flex-1 overflow-y-auto">
               {notifications.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
@@ -254,18 +235,14 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                           }`}
                           onClick={() => markAsRead(notification.id)}
                         >
-                          {/* Unread Indicator */}
                           {!notification.isRead && (
                             <div className="absolute top-4 right-4 w-2 h-2 bg-indigo-500 rounded-full"></div>
                           )}
 
                           <div className="flex items-start space-x-3">
-                            {/* Icon */}
                             <div className={`p-2 rounded-lg bg-gradient-to-r ${getNotificationColor(notification.type, notification.priority)}`}>
                               <Icon className="w-4 h-4 text-white" />
                             </div>
-
-                            {/* Content */}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between mb-1">
                                 <h3 className={`font-medium truncate ${
@@ -298,8 +275,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                                   </span>
                                 )}
                               </div>
-                              
-                              {/* Approval Actions */}
                               {notification.requiresAction && (
                                 <div className="flex space-x-2 mt-3">
                                   <button
@@ -331,8 +306,6 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                 </div>
               )}
             </div>
-
-            {/* Footer */}
             <div className="p-4 border-t border-gray-200 bg-gray-50">
               <button className="w-full text-center text-indigo-600 hover:text-indigo-700 font-medium text-sm transition-colors">
                 View All Notifications

@@ -5,8 +5,6 @@ const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
-
-  // Fetch all events
   const fetchEvents = useCallback(async () => {
     try {
       const res = await eventApi.getAllEvents();
@@ -15,8 +13,6 @@ export const EventProvider = ({ children }) => {
       console.error("Error fetching events:", err);
     }
   }, []);
-
-  // Fetch single event
   const fetchEventById = async (id) => {
     try {
       const res = await eventApi.getEventById(id);
@@ -26,8 +22,6 @@ export const EventProvider = ({ children }) => {
       throw err;
     }
   };
-
-  // Create a new event
   const createNewEvent = async (data) => {
     try {
       const res = await eventApi.createEvent(data);
@@ -38,8 +32,6 @@ export const EventProvider = ({ children }) => {
       throw err;
     }
   };
-
-  // Update event
   const updateExistingEvent = async (id, data) => {
     try {
       const res = await eventApi.updateEvent(id, data);
@@ -50,8 +42,6 @@ export const EventProvider = ({ children }) => {
       throw err;
     }
   };
-
-  // Delete event
   const deleteEvent = async (id) => {
     try {
       await eventApi.deleteEvent(id);
@@ -61,12 +51,9 @@ export const EventProvider = ({ children }) => {
       throw err;
     }
   };
-
-  // Submit feedback for an event
   const submitFeedback = async (eventId, feedbackData) => {
     try {
       await eventApi.updateEvent(eventId, { feedback: feedbackData });
-      // optionally update local state if needed
     } catch (err) {
       console.error("Error submitting feedback:", err);
       throw err;

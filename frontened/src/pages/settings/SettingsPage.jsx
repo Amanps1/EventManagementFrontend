@@ -135,7 +135,6 @@ const SettingsPage = () => {
           </nav>
         </div>
 
-        {/* Content */}
         <div 
           className="lg:col-span-3 rounded-2xl p-6 shadow-lg border transition-colors duration-300"
           style={{
@@ -230,7 +229,12 @@ const SettingsPage = () => {
                       console.log('Theme changing from', theme, 'to', e.target.value);
                       setTheme(e.target.value);
                     }}
-                    className="w-full p-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    style={{
+                      backgroundColor: theme === 'dark' ? '#374151' : '#ffffff',
+                      borderColor: theme === 'dark' ? '#4b5563' : '#d1d5db',
+                      color: theme === 'dark' ? '#ffffff' : '#000000'
+                    }}
                   >
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
@@ -240,7 +244,12 @@ const SettingsPage = () => {
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Language</label>
                   <select
                     defaultValue="en"
-                    className="w-full p-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    style={{
+                      backgroundColor: theme === 'dark' ? '#374151' : '#ffffff',
+                      borderColor: theme === 'dark' ? '#4b5563' : '#d1d5db',
+                      color: theme === 'dark' ? '#ffffff' : '#000000'
+                    }}
                   >
                     <option value="en">English</option>
                     <option value="es">Spanish</option>

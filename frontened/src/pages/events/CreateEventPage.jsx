@@ -169,7 +169,6 @@ const CreateEventPage = () => {
       animate={{ opacity: 1, y: 0 }}
       className="p-6 max-w-4xl mx-auto"
     >
-      {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center space-x-4">
           <motion.button
@@ -190,7 +189,6 @@ const CreateEventPage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Basic Information */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -307,8 +305,6 @@ const CreateEventPage = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Date & Time */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -384,7 +380,6 @@ const CreateEventPage = () => {
           </div>
         </motion.div>
 
-        {/* Location */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -452,7 +447,6 @@ const CreateEventPage = () => {
           </div>
         </motion.div>
 
-        {/* Submit Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -33,11 +33,11 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch system statistics
+        
         const statsResponse = await axios.get("http://localhost:8080/api/admin/statistics");
         setStats(statsResponse.data.data);
         
-        // Fetch recent events
+        
         const eventsResponse = await axios.get("http://localhost:8080/api/events?page=0&size=5");
         setRecentEvents(eventsResponse.data.data || []);
       } catch (err) {
@@ -125,7 +125,6 @@ const DashboardPage = () => {
       animate="visible"
       className="p-6 space-y-6"
     >
-      {/* Header */}
       <motion.div variants={itemVariants} className="mb-8">
         <div className="flex items-center justify-between">
           <div>
@@ -146,7 +145,6 @@ const DashboardPage = () => {
         </div>
       </motion.div>
 
-      {/* Stats Grid */}
       <motion.div 
         variants={itemVariants}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -182,9 +180,7 @@ const DashboardPage = () => {
         })}
       </motion.div>
 
-      {/* Recent Activity & Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Events */}
         <motion.div 
           variants={itemVariants}
           className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
@@ -235,7 +231,6 @@ const DashboardPage = () => {
           </div>
         </motion.div>
 
-        {/* Quick Actions */}
         <motion.div 
           variants={itemVariants}
           className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"

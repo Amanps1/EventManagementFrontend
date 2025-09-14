@@ -23,7 +23,7 @@ const AnalyticsPage = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold text-indigo-700 mb-6">Analytics</h1>
 
-      {/* Registrations Bar Chart */}
+      
       <div className="bg-white shadow rounded-lg p-4 mb-6">
         <h2 className="text-lg font-semibold mb-4">Event Registrations</h2>
         <ResponsiveContainer width="100%" height={300}>
@@ -37,7 +37,7 @@ const AnalyticsPage = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Feedback Line Chart */}
+     
       <div className="bg-white shadow rounded-lg p-4">
         <h2 className="text-lg font-semibold mb-4">Feedback Trends</h2>
         <ResponsiveContainer width="100%" height={300}>

@@ -119,9 +119,9 @@ const ResourceBookingPage = () => {
     const booking = {
       id: Date.now(),
       ...newBooking,
-      resourceType: 'ROOM', // Default type
+      resourceType: 'ROOM', 
       status: 'PENDING',
-      totalCost: calculateDuration(newBooking.startTime, newBooking.endTime) * 25, // $25/hour default
+      totalCost: calculateDuration(newBooking.startTime, newBooking.endTime) * 25, 
       attendees: parseInt(newBooking.attendees)
     };
     
@@ -157,7 +157,6 @@ const ResourceBookingPage = () => {
       animate={{ opacity: 1 }}
       className="p-6 space-y-6"
     >
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <motion.button
@@ -185,8 +184,6 @@ const ResourceBookingPage = () => {
           <span>New Booking</span>
         </motion.button>
       </div>
-
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
           { label: 'Total Bookings', value: bookings.length, color: 'from-blue-500 to-indigo-500', icon: Calendar },
@@ -216,8 +213,6 @@ const ResourceBookingPage = () => {
           );
         })}
       </div>
-
-      {/* Filters */}
       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
         <div className="flex space-x-4">
           {['all', 'CONFIRMED', 'PENDING', 'CANCELLED'].map(filter => (
@@ -235,8 +230,6 @@ const ResourceBookingPage = () => {
           ))}
         </div>
       </div>
-
-      {/* Bookings List */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Booking History</h2>
@@ -326,8 +319,6 @@ const ResourceBookingPage = () => {
           </table>
         </div>
       </div>
-
-      {/* New Booking Modal */}
       <AnimatePresence>
         {showBookingModal && (
           <motion.div
