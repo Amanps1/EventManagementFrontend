@@ -13,7 +13,8 @@ import {
   Edit,
   Trash2,
   Star,
-  ChevronDown
+  ChevronDown,
+  UserPlus
 } from "lucide-react";
 import { getAllEvents, deleteEvent } from "../../api/eventApi";
 
@@ -49,17 +50,41 @@ const EventsPage = () => {
       });
     };
     
+    const handleRegistrationUpdate = () => {
+      fetchEvents();
+    };
+    
     window.addEventListener('eventStatusUpdated', handleEventStatusUpdate);
+    window.addEventListener('eventRegistrationUpdated', handleRegistrationUpdate);
     
     return () => {
       window.removeEventListener('eventStatusUpdated', handleEventStatusUpdate);
+      window.removeEventListener('eventRegistrationUpdated', handleRegistrationUpdate);
     };
   }, []);
 
   const fetchEvents = async () => {
     try {
       const response = await getAllEvents(0, 20);
-      setEvents(response.data.data || []);
+      const eventsData = response.data.data || [];
+      
+      // Fetch registration counts for each event
+      const eventsWithCounts = await Promise.all(
+        eventsData.map(async (event) => {
+          try {
+            const regResponse = await fetch(`http://localhost:8080/api/events/${event.id}/registrations`);
+            const regData = await regResponse.json();
+            return {
+              ...event,
+              registrationCount: regData.data ? regData.data.length : 0
+            };
+          } catch (err) {
+            return { ...event, registrationCount: 0 };
+          }
+        })
+      );
+      
+      setEvents(eventsWithCounts);
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {
@@ -249,6 +274,15 @@ const EventsPage = () => {
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
+                      onClick={() => navigate(`/events/${event.id}/register`)}
+                      className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+                      title="Register for Event"
+                    >
+                      <UserPlus className="w-4 h-4" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                       onClick={() => handleDeleteEvent(event.id)}
                       className="p-2 text-gray-400 hover:text-red-600 transition-colors"
                     >
@@ -280,7 +314,7 @@ const EventsPage = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Users className="w-4 h-4" />
-                  <span>{event.currentRegistrations}/{event.maxCapacity} registered</span>
+                  <span>{event.registrationCount || 0}/{event.maxAttendees || event.maxCapacity || 0} registered</span>
                 </div>
               </div>
 
@@ -289,13 +323,23 @@ const EventsPage = () => {
                   <div
                     className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all duration-300"
                     style={{
-                      width: `${Math.min((event.currentRegistrations / event.maxCapacity) * 100, 100)}%`
+                      width: `${Math.min(((event.registrationCount || 0) / (event.maxAttendees || event.maxCapacity || 1)) * 100, 100)}%`
                     }}
                   ></div>
                 </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  {Math.round((event.currentRegistrations / event.maxCapacity) * 100)}% capacity
+                <p className="text-xs text-gray-500 mt-2 mb-4">
+                  {Math.round(((event.registrationCount || 0) / (event.maxAttendees || event.maxCapacity || 1)) * 100)}% capacity
                 </p>
+                
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate(`/events/${event.id}/register`)}
+                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  <span>Register</span>
+                </motion.button>
               </div>
             </motion.div>
           ))}
